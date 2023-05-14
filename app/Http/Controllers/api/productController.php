@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
-use App\Models\Comuna;
+use App\Models\Products;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-
-class ComunaController extends Controller
+class productController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,19 +16,9 @@ class ComunaController extends Controller
      */
     public function index()
     {
-        //$comunas = Comuna::all();
-        
-        return view('comunas.index', []);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
- 
+        $product=DB::table('_products')
+        ->get();
+        return json_encode(['product'=>$product]);
     }
 
     /**
@@ -39,7 +29,7 @@ class ComunaController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -54,19 +44,6 @@ class ComunaController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-    
-    }
-
-    
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -75,7 +52,7 @@ class ComunaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        //
     }
 
     /**
@@ -86,7 +63,6 @@ class ComunaController extends Controller
      */
     public function destroy($id)
     {
-    
+        //
     }
-
 }

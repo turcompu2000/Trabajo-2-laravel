@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ComunaController;
+use App\Http\Controllers\categoriesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +36,7 @@ Route::get('/comunas/create', [ComunaController::class, 'create'])->name('comuna
 Route::delete('/comunas/{comuna}', [ComunaController::class, 'destroy'])->name('comunas.destroy');
 Route::put('/comunas/{comuna}', [ComunaController::class, 'update'])->name('comunas.update');
 Route::get('/comunas/{comuna}/edit', [ComunaController::class, 'edit'])->name('comunas.edit');
+
 });
 
 require __DIR__.'/auth.php';

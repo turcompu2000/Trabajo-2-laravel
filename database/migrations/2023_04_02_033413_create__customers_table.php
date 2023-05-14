@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('_customers', function (Blueprint $table) {
+            $table->id();
             $table->string('document_number',15)->unique();
             $table->string('first_name',50)->notnull();
             $table->string('last_name',50)->notnull();
