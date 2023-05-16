@@ -16,9 +16,9 @@ class pay_modeController extends Controller
      */
     public function index()
     {
-        $pay=DB::table('pay_mode')
+        $pay_mode=DB::table('pay_mode')
         ->get();
-        return json_encode(['pay'=>$pay]);
+        return json_encode(['pay_mode'=>$pay_mode]);
     }
 
     /**

@@ -16,9 +16,9 @@ class invoicesController extends Controller
      */
     public function index()
     {
-        $invoice=DB::table('_invoices')
+        $invoices=DB::table('_invoices')
         ->get();
-        return json_encode(['invoice'=>$invoice]);
+        return json_encode(['invoices'=>$invoices]);
     }
 
     /**

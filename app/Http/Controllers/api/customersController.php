@@ -16,9 +16,9 @@ class customersController extends Controller
      */
     public function index()
     {
-        $customer=DB::table('_customers')
+        $customers=DB::table('customers')
         ->get();
-        return json_encode(['customer'=>$customer]);
+        return json_encode(['customers'=>$customers]);
     }
 
     /**
@@ -29,7 +29,27 @@ class customersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate =Customers::make($request->all(),[
+            'name'=>['required','max:30','unique'],
+            'description'=>['required','numeric','min:1']
+        ]);
+        
+        if($validate->fails()){
+            return response()->json([
+                'msg' => 'se  produjo un error en la  validacion de la informacion',
+                'statusCode' => 400
+            ]);
+        }
+        $customers = new Customers();
+        $customers->document_number=$request->document_number;
+        $customers->first_name=$request->first_name;   
+        $customers->last_name=$request->last_name;   
+        $customers->address=$request->address;   
+        $customers->birthday=$request->birthday;   
+        $customers->phone_number=$request->phone_number;   
+        $customers->email=$request->email;   
+        $customers->save();
+        return json_encode(['customers' => $customers]);
     }
 
     /**
@@ -40,7 +60,11 @@ class customersController extends Controller
      */
     public function show($id)
     {
-        //
+        $customers = Customers::find($id);
+        
+        if(is_null($customers)){
+            return abort(404);
+        }
     }
 
     /**
@@ -52,7 +76,16 @@ class customersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $customers = new Customers();
+        $customers->document_number=$request->document_number;
+        $customers->first_name=$request->first_name;   
+        $customers->last_name=$request->last_name;   
+        $customers->address=$request->address;   
+        $customers->birthday=$request->birthday;   
+        $customers->phone_number=$request->phone_number;   
+        $customers->email=$request->email;   
+        $customers->save();
+        return json_encode(['customers' => $customers]);
     }
 
     /**
@@ -63,6 +96,10 @@ class customersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $customer = Customers::find($id);
+        $customer->delete();
+        $customers =DB::table('tb_comuna')
+        ->get();
+        return json_encode(['customers' => $customers, 'success'=>true]);
     }
 }

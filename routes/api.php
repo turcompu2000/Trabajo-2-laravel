@@ -23,12 +23,20 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 Route::get('/categories', [categoriesController::class, 'index'])->name('categories');
-Route::get('/customer', [customersController::class, 'index'])->name('customer');
+Route::post('/categories',[categoriesController::class, 'store'])->name('categories.store');
+Route::delete('/categories/{categorie}',[categoriesController::class, 'destroy'])->name('categories.destroy');
+Route::get('/categories/{categorie}',[categoriesller::class, 'show'])->name('categories.show');
+Route::get('/categories/{categorie}',[categoriesController::class, 'update'])->name('categories.update');
+
+
+
+Route::get('/customers', [customersController::class, 'index'])->name('customers');
 Route::get('/details', [detailsController::class, 'index'])->name('details');
-Route::get('/invoice', [invoicesController::class, 'index'])->name('invoice');
-Route::get('/pay', [pay_modeController::class, 'index'])->name('pay');
-Route::get('/product', [productController::class, 'index'])->name('product');
+Route::get('/invoices', [invoicesController::class, 'index'])->name('invoices');
+Route::get('/pay_mode', [pay_modeController::class, 'index'])->name('pay_mode');
+Route::get('/products', [productController::class, 'index'])->name('products');
 
 
 
