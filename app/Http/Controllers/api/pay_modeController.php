@@ -29,7 +29,12 @@ class pay_modeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Pay_modes = new Pay_mode();
+        $Pay_modes->id=$request->id;
+        $Pay_modes->name=$request->name;
+        $Pay_modes->observation=$request->observation;   
+        $Pay_modes->save();
+        return json_encode(['Pay_modes' => $Pay_modes]);
     }
 
     /**
@@ -40,7 +45,8 @@ class pay_modeController extends Controller
      */
     public function show($id)
     {
-        //
+        $Pay_mode = Pay_mode::find($id);
+        return json_encode(['Pay_mode'=>$Pay_mode]);
     }
 
     /**
@@ -52,7 +58,12 @@ class pay_modeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Pay_mode = Pay_mode::find($id);
+        $Pay_mode->id=$request->id;
+        $Pay_mode->name=$request->name;
+        $Pay_mode->observation=$request->observation;   
+        $Pay_mode->save();
+        return json_encode(['Pay_mode' => $Pay_mode]);
     }
 
     /**
@@ -63,6 +74,12 @@ class pay_modeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pay_modes = Pay_mode::find($id);
+        $pay_modes->delete();
+        $pay_mode =DB::table('Pay_mode')
+        ->get();
+        return json_encode(['pay_mode'=>$pay_mode]);
+
+
     }
 }

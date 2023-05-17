@@ -30,12 +30,12 @@ class categoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $categories = new Categories();
-        $categories->id=$request->id;
-        $categories->name=$request->name;
-        $categories->description=$request->description;   
-        $categories->save();
-        return json_encode(['categories' => $categories]);
+        $categorie = new Categories();
+        $categorie->id=$request->id;
+        $categorie->name=$request->name;
+        $categorie->description=$request->description;   
+        $categorie->save();
+        return json_encode(['categorie' => $categorie]);
     }
 
     /**
@@ -47,8 +47,6 @@ class categoriesController extends Controller
     public function show($id)
     {
         $categories = Categories::find($id);
-        
-
         return json_encode(['categories'=>$categories]);
     }
 
@@ -62,11 +60,10 @@ class categoriesController extends Controller
     public function update(Request $request, $id)
     {
         $categories=Categories::find($id);
-        $categories->id=$request->id;
         $categories->name=$request->name;
         $categories->description=$request->description;   
         $categories->save();
-        return json_encode(['categories' => $categories]);
+        return json_encode(['categories'=>$categories]);
     }
 
     /**

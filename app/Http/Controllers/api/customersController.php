@@ -29,16 +29,16 @@ class customersController extends Controller
      */
     public function store(Request $request)
     {
-        $customers = new Customers();
-        $customers->document_number=$request->document_number;
-        $customers->first_name=$request->first_name;   
-        $customers->last_name=$request->last_name;   
-        $customers->address=$request->address;   
-        $customers->birthday=$request->birthday;   
-        $customers->phone_number=$request->phone_number;   
-        $customers->email=$request->email;   
-        $customers->save();
-        return json_encode(['customers' => $customers]);
+        $customer = new Customers();
+        $customer->document_number=$request->document_number;
+        $customer->first_name=$request->first_name;   
+        $customer->last_name=$request->last_name;   
+        $customer->address=$request->address;   
+        $customer->birthday=$request->birthday;   
+        $customer->phone_number=$request->phone_number;   
+        $customer->email=$request->email;   
+        $customer->save();
+        return json_encode(['customer' => $customer]);
     }
 
     /**
@@ -62,7 +62,7 @@ class customersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $customers =Customers::find();
+        $customers =Customers::find($id);
         $customers->document_number=$request->document_number;
         $customers->first_name=$request->first_name;   
         $customers->last_name=$request->last_name;   
