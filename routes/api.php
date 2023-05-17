@@ -2,8 +2,6 @@
 
 use App\Http\Controllers\api\categoriesController;
 use App\Http\Controllers\api\customersController;
-use App\Http\Controllers\api\detailsController;
-use App\Http\Controllers\api\invoicesController;
 use App\Http\Controllers\api\pay_modeController;
 use App\Http\Controllers\api\productController;
 use Illuminate\Http\Request;

@@ -29,7 +29,8 @@ class customersController extends Controller
      */
     public function store(Request $request)
     {
-        $customer = new Customers();
+        $customer=new Customers();
+        $customer->id=$request->id;
         $customer->document_number=$request->document_number;
         $customer->first_name=$request->first_name;   
         $customer->last_name=$request->last_name;   
@@ -38,7 +39,7 @@ class customersController extends Controller
         $customer->phone_number=$request->phone_number;   
         $customer->email=$request->email;   
         $customer->save();
-        return json_encode(['customer' => $customer]);
+        return json_encode(['customer'=>$customer]);
     }
 
     /**
@@ -49,7 +50,7 @@ class customersController extends Controller
      */
     public function show($id)
     {
-        $customers = Customers::find($id);
+       $customers = Customers::find($id);
        return json_encode(['customers'=>$customers]);
     }
 
@@ -84,7 +85,7 @@ class customersController extends Controller
     {
         $customer = Customers::find($id);
         $customer->delete();
-        $customers =DB::table('tb_comuna')
+        $customers =DB::table('customers')
         ->get();
         return json_encode(['customers' => $customers, 'success'=>true]);
     }

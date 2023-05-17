@@ -66,7 +66,6 @@ class productController extends Controller
         $products->price=$request->price;   
         $products->stock=$request->stock;   
         $products->categoria_id=$request->categoria_id;   
-
         $products->save();
         return json_encode(['products'=>$products]);
     }
@@ -79,7 +78,7 @@ class productController extends Controller
      */
     public function destroy($id)
     {
-        $product = Products::find($id);
+        $product=Products::find($id);
         $product->delete();
         $products =DB::table('_products')
         ->get();
