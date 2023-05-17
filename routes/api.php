@@ -27,8 +27,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/categories', [categoriesController::class, 'index'])->name('categories');
 Route::post('/categories',[categoriesController::class, 'store'])->name('categories.store');
 Route::delete('/categories/{categorie}',[categoriesController::class, 'destroy'])->name('categories.destroy');
-Route::get('/categories/{categorie}',[categoriesller::class, 'show'])->name('categories.show');
-Route::get('/categories/{categorie}',[categoriesController::class, 'update'])->name('categories.update');
+Route::get('/categories/{categorie}',[categoriesController::class, 'show'])->name('categories.show');
+Route::put('/categories/{categorie}',[categoriesController::class, 'update'])->name('categories.update');
 
 
 

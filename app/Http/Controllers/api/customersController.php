@@ -29,17 +29,6 @@ class customersController extends Controller
      */
     public function store(Request $request)
     {
-        $validate =Customers::make($request->all(),[
-            'name'=>['required','max:30','unique'],
-            'description'=>['required','numeric','min:1']
-        ]);
-        
-        if($validate->fails()){
-            return response()->json([
-                'msg' => 'se  produjo un error en la  validacion de la informacion',
-                'statusCode' => 400
-            ]);
-        }
         $customers = new Customers();
         $customers->document_number=$request->document_number;
         $customers->first_name=$request->first_name;   
@@ -61,10 +50,7 @@ class customersController extends Controller
     public function show($id)
     {
         $customers = Customers::find($id);
-        
-        if(is_null($customers)){
-            return abort(404);
-        }
+       return json_encode(['customers'=>$customers]);
     }
 
     /**
@@ -76,7 +62,7 @@ class customersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $customers = new Customers();
+        $customers =Customers::find();
         $customers->document_number=$request->document_number;
         $customers->first_name=$request->first_name;   
         $customers->last_name=$request->last_name;   

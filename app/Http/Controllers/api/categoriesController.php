@@ -30,18 +30,8 @@ class categoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $validate =Categories::make($request->all(),[
-            'name'=>['required','max:30','unique'],
-            'description'=>['required','numeric','min:1']
-        ]);
-        
-        if($validate->fails()){
-            return response()->json([
-                'msg' => 'se  produjo un error en la  validacion de la informacion',
-                'statusCode' => 400
-            ]);
-        }
         $categories = new Categories();
+        $categories->id=$request->id;
         $categories->name=$request->name;
         $categories->description=$request->description;   
         $categories->save();
@@ -56,11 +46,10 @@ class categoriesController extends Controller
      */
     public function show($id)
     {
-        $categorie = Categories::find($id);
+        $categories = Categories::find($id);
         
-        if(is_null($categorie)){
-            return abort(404);
-        }
+
+        return json_encode(['categories'=>$categories]);
     }
 
     /**
@@ -72,7 +61,8 @@ class categoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $categories = Categories::find($id);
+        $categories=Categories::find($id);
+        $categories->id=$request->id;
         $categories->name=$request->name;
         $categories->description=$request->description;   
         $categories->save();
@@ -89,7 +79,7 @@ class categoriesController extends Controller
     {
         $categorie = Categories::find($id);
         $categorie->delete();
-        $categories =DB::table('tb_comuna')
+        $categories =DB::table('categories')
         ->get();
         return json_encode(['categories' => $categories, 'success'=>true]);
     }
