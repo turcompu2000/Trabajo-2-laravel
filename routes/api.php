@@ -45,11 +45,11 @@ Route::get('/pay_mode/{pay_modes}',[pay_modeController::class, 'show'])->name('p
 Route::put('/pay_mode/{pay_modes}',[pay_modeController::class, 'update'])->name('pay_mode.update');
 
 
-
-
-Route::get('/details', [detailsController::class, 'index'])->name('details');
-Route::get('/invoices', [invoicesController::class, 'index'])->name('invoices');
 Route::get('/products', [productController::class, 'index'])->name('products');
+Route::post('/products',[productController::class, 'store'])->name('products.store');
+Route::delete('/products/{product}',[productController::class, 'destroy'])->name('products.destroy');
+Route::get('/products/{product}',[productController::class, 'show'])->name('products.show');
+Route::put('/products/{product}',[productController::class, 'update'])->name('products.update');
 
 
 

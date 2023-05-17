@@ -29,7 +29,14 @@ class productController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Products();
+        $product->id=$request->id;
+        $product->name=$request->name;
+        $product->price=$request->price;   
+        $product->stock=$request->stock;   
+        $product->categoria_id=$request->categoria_id; 
+        $product->save();
+        return json_encode(['product' => $product]);
     }
 
     /**
@@ -40,7 +47,8 @@ class productController extends Controller
      */
     public function show($id)
     {
-        //
+        $products = Products::find($id);
+        return json_encode(['products'=>$products]);
     }
 
     /**
@@ -52,7 +60,15 @@ class productController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $products=Products::find($id);
+        $products->id=$request->id;
+        $products->name=$request->name;
+        $products->price=$request->price;   
+        $products->stock=$request->stock;   
+        $products->categoria_id=$request->categoria_id;   
+
+        $products->save();
+        return json_encode(['products'=>$products]);
     }
 
     /**
@@ -63,6 +79,10 @@ class productController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Products::find($id);
+        $product->delete();
+        $products =DB::table('_products')
+        ->get();
+        return json_encode(['products' => $products, 'success'=>true]);
     }
 }
